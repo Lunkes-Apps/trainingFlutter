@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
       // questionIndex++;
     }
 
-    var _questions = [
+    var questions = [
       {
         'questionText': 'What\' s yout favorite Color?',
         'answers': ['Black', 'Red', 'Green', 'White'],
@@ -43,11 +43,12 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(
-              _questions[_questionIndex],
+              questions[_questionIndex]['questionText'],
             ),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),
