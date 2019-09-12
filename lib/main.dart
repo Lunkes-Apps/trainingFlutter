@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './widgets/user_transactions.dart';
 import './widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
 import 'models/transaction.dart';
@@ -18,11 +17,13 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.brown,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-                title: TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            )),
+              title: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              button: TextStyle(color: Colors.white)
+            ),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
               title: TextStyle(
@@ -65,11 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransacions(String txTitle, double txAmount) {
+  void _addNewTransacions(String txTitle, double txAmount, DateTime selectedDate) {
     final newTx = Transaction(
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: selectedDate,
       id: DateTime.now().toString(),
     );
     setState(() {
